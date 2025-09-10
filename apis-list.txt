@@ -1,0 +1,12 @@
+Authentication ❌ 
+Get Friends ✅ ✔
+Get the latest message ✅ ✔
+Get friend messages ✅ ✔
+save Message ✅ ✔
+Add Friend ✅ ✔
+Get users by username ✅ ✔
+Update messages ✅
+Delete messages ✅
+
+Clear history ✅
+Delete Friend ✅

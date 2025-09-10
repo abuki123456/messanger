@@ -1,0 +1,36 @@
+     chatting-system
+
+Tables:
+  Users:
+    Column:
+      Id Integer,
+      First name Text,
+      Last name Text,
+      Username Text Null,
+      Password Text,
+      Email Text,
+      User status Text,
+      Profile photo Text,
+      Created date Date
+      
+  
+  Friends:
+    Column:
+      Id Integer,
+      Request sender id Integer,
+      Request reciever id Integer,
+      Created date Date
+
+  
+  Friend chats:
+    Column:
+      Id Integer,
+      Message sender id Integer,
+      Message reciever id Integer,
+      Message Text,
+      Message type Text,
+      Caption Text,
+      Message status Text,
+      Timestamp Integer,
+      Created date Date
+      
