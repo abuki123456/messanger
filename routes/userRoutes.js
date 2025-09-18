@@ -15,6 +15,6 @@ router
   .get(userController.getUserById)
   .patch(upload.single('photo'), userController.updateUser);
 router.post('/friends/:userId/:friendId', userController.addFriend);
-router.route('/').get(userController.getAllUsers);
 module.exports = router;
+
 
