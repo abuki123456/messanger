@@ -1,10 +1,8 @@
 const express = require('express');
-const multer = require('multer');
 const userController = require('../controllers/userController');
 
 const authController = require('../controllers/authController');
-
-const upload = multer({ dest: 'uploads/' });
+const upload = require('../utils/uploadFiles');
 
 const router = express.Router();
 
@@ -15,8 +13,8 @@ router.get('/friends/:userId', userController.getAllFriends);
 router
   .route('/:userId')
   .get(userController.getUserById)
-  .patch(userController.updateUser);
+  .patch(upload.single('photo'), userController.updateUser);
 router.post('/friends/:userId/:friendId', userController.addFriend);
 router.route('/').get(userController.getAllUsers);
-router.post('/uploads', upload.single('file'), userController.uploadFiles);
 module.exports = router;
+
