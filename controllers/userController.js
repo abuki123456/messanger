@@ -1,3 +1,4 @@
+const fs = require('fs');
 const Friend = require('../model/friendModel');
 const User = require('../model/userModel');
 const AppError = require('../utils/appError');
@@ -103,13 +104,21 @@ exports.getUserByUsername = catchAsync(async (req, res, next) => {
 //     username: users.username,
 //     userStatus: users.username
 exports.updateUser = catchAsync(async (req, res, next) => {
-  const updatedUser = req.body;
   const { userId } = req.params;
+  const editedUser = { ...req.body };
+  if (req.file) {
+    const user = await User.findById(userId);
+    fs.unlink(`./uploads/${user.profilePhoto}`, e => console.log(e));
+    editedUser.profilePhoto = req.file.filename;
+  }
 
-  const user = await User.findByIdAndUpdate(userId, updatedUser);
+  const user = await User.findByIdAndUpdate(userId, editedUser, {
+    new: true,
+    runValidators: true
+  });
 
   res.status(200).json({
-    status: 'Sucess',
+    status: 'success',
     updatedUser: user
   });
 });
@@ -123,3 +132,4 @@ exports.uploadFiles = catchAsync(async (req, res, next) => {
     status: 'Sucess'
   });
 });
+
